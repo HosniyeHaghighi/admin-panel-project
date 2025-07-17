@@ -1,15 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-export default { // <-- همچنین بهتر است از export default استفاده کنی اگر از ES Modules استفاده می کنی
+export default { 
   
-  // === مشکل اصلی اینجا بود ===
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // این خط برای آینده که از جاوااسکریپت استفاده کنی خوب است
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   
   theme: {
     extend: {
-      // اینجا تمام متغیرهای سفارشی خودمان را به Tailwind معرفی می کنیم
+      
       colors: {
         'page': '#F4F7FE',
         'header-sidebar': '#1A1D2E',
@@ -31,7 +30,7 @@ export default { // <-- همچنین بهتر است از export default است�
         },
       },
       spacing: {
-        'main': '24px', // برای پدینگ ها و گپ های اصلی
+        'main': '24px', 
       },
       borderRadius: {
         'main': '12px',
@@ -46,6 +45,6 @@ export default { // <-- همچنین بهتر است از export default است�
     },
   },
   plugins: [
-    require('@tailwindcss/forms'), // این پلاگین استایل های بهتری به فرم ها می دهد
+    require('@tailwindcss/forms'), 
   ],
 }
