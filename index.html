@@ -3,216 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Restaurant</title>
-    <!-- فرض می کنیم تمام استایل ها در یک فایل style.css ادغام شده اند -->
+    <title>Admin Panel - Restaurant (Tailwind)</title>
+    <!-- این لینک به فایلی اشاره می کند که دستورات @tailwind را در خود دارد -->
     <link rel="stylesheet" href="/src/style.css"> 
 </head>
-<body>
-    <div class="app-container">
+<body class="bg-page text-text-primary">
+
+    <!-- App Container -->
+    <div class="p-main min-h-screen flex flex-col gap-main">
 
         <!-- ======================= HEADER ======================= -->
-        <header class="main-header">
-            <div class="header-top-navbar">
-                <div class="header-logo-container">
-                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17h2v-2h-2v2zm0-4h2V7h-2v8z"></path>
-                    </svg>
-                    <span>Inntegreat</span>
+        <header class="bg-header-sidebar text-text-light rounded-main p-main flex flex-col gap-main sticky top-main z-10">
+            <!-- Top Navbar -->
+            <div class="flex justify-between items-center h-[72px]">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17h2v-2h-2v2zm0-4h2V7h-2v8z"></path></svg>
+                    <span class="font-bold text-xl text-card">Inntegreat</span>
                 </div>
 
-                <nav class="header-nav-buttons">
-                    <button class="nav-button">Dashboard</button>
-                    <button class="nav-button">Guests</button>
-                    <button class="nav-button">Reservations</button>
-                    <button class="nav-button">Rooms</button>
-                    <button class="nav-button active">Restaurant</button>
+                <!-- Navigation Buttons -->
+                <nav class="hidden md:flex items-center gap-2">
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Dashboard</button>
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Guests</button>
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Reservations</button>
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Rooms</button>
+                    <button class="px-4 py-2 rounded-md bg-accent text-card font-medium">Restaurant</button>
                 </nav>
 
-                <div class="header-icons-profile">
-                    <button class="icon-button">
-                        <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <!-- Icons & Profile -->
+                <div class="flex items-center gap-4">
+                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
-                    <button class="icon-button">
-                        <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
                     </button>
-                    <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="user-avatar">
-                    <button class="hamburger-menu-button">
-                        <svg class="icon-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-accent">
+                    <button class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
             </div>
             
-            <!-- ** این بخش به داخل هدر بازگشته است ** -->
-            <section class="header-status-section">
-                <h1 class="section-title">Restaurant</h1>
-                <div class="status-cards-grid">
-                    <div class="status-card">
-                        <div class="card-text">
-                            <p class="card-label">New Orders</p>
-                            <p class="card-value">18</p>
+            <!-- Stats Section -->
+            <section>
+                <h1 class="text-3xl font-bold text-card mb-5">Restaurant</h1>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-main">
+                    <!-- Stat Card 1 -->
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div>
+                            <p class="text-text-light text-sm">New Orders</p>
+                            <p class="text-card text-3xl font-bold">18</p>
                         </div>
-                        <div class="card-icon-wrapper blue">🍴</div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-new-text">🍴</div>
                     </div>
-                    <div class="status-card">
-                        <div class="card-text">
-                            <p class="card-label">On Progress</p>
-                            <p class="card-value">2</p>
+                    <!-- Stat Card 2 -->
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div>
+                            <p class="text-text-light text-sm">On Progress</p>
+                            <p class="text-card text-3xl font-bold">2</p>
                         </div>
-                        <div class="card-icon-wrapper yellow">⏳</div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-progress-text">⏳</div>
                     </div>
-                    <div class="status-card">
-                        <div class="card-text">
-                            <p class="card-label">Ready to Serve</p>
-                            <p class="card-value">7</p>
+                    <!-- Stat Card 3 -->
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div>
+                            <p class="text-text-light text-sm">Ready to Serve</p>
+                            <p class="text-card text-3xl font-bold">7</p>
                         </div>
-                        <div class="card-icon-wrapper green">🛎️</div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-ready-text">🛎️</div>
                     </div>
-                    <div class="status-card">
-                        <div class="card-text">
-                            <p class="card-label">Cancelled Orders</p>
-                            <p class="card-value">3</p>
+                    <!-- Stat Card 4 -->
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div>
+                            <p class="text-text-light text-sm">Cancelled Orders</p>
+                            <p class="text-card text-3xl font-bold">3</p>
                         </div>
-                        <div class="card-icon-wrapper red">❌</div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-cancelled-text">❌</div>
                     </div>
                 </div>
             </section>
         </header>
 
         <!-- ======================= CONTENT AREA ======================= -->
-        <div class="content-area-below-header">
+        <div class="flex-1 flex flex-col md:flex-row gap-main">
             
             <!-- ======================= SIDEBAR ======================= -->
-            <aside class="sidebar-filters">
-                <h3 class="sidebar-title">Filters</h3>
+            <aside class="w-full md:w-[256px] flex-shrink-0 bg-card text-text-secondary p-main rounded-main shadow-lg self-start sticky top-36">
+                <h3 class="text-lg font-bold text-text-primary mb-6">Filters</h3>
                 
-                <div class="filter-group">
-                    <h4 class="filter-subtitle">Order Status</h4>
-                    <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox-input" checked>
-                        <span class="checkbox-label">New</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox-input" checked>
-                        <span class="checkbox-label">On Progress</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox-input" checked>
-                        <span class="checkbox-label">Ready to Serve</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" class="checkbox-input">
-                        <span class="checkbox-label">Cancelled</span>
-                    </label>
-                </div>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <h4 class="font-bold text-text-primary mb-3">Order Status</h4>
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" class="w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent" checked> New</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" class="w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent" checked> On Progress</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" class="w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent" checked> Ready to Serve</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" class="w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent"> Cancelled</label>
+                        </div>
+                    </div>
 
-                <div class="filter-group divider-top">
-                    <h4 class="filter-subtitle">Filter by</h4>
-                    <label class="radio-item">
-                        <input type="radio" name="filter_by_time" class="radio-input" checked>
-                        <span class="radio-label">Recent orders</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="filter_by_time" class="radio-input">
-                        <span class="radio-label">Last hour</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="filter_by_time" class="radio-input">
-                        <span class="radio-label">Today</span>
-                    </label>
-                </div>
-
-                <div class="filter-group divider-top">
-                    <h4 class="filter-subtitle">Card View</h4>
-                    <div class="toggle-switch-label">
-                        <span>Show Cards</span>
-                        <!-- Toggle switch can be added here later -->
+                    <div class="border-t border-border-color pt-6">
+                        <h4 class="font-bold text-text-primary mb-3">Filter by</h4>
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="radio" name="filter_by_time" class="w-5 h-5 border-2 border-border-color text-accent focus:ring-accent" checked> Recent orders</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="radio" name="filter_by_time" class="w-5 h-5 border-2 border-border-color text-accent focus:ring-accent"> Last hour</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="radio" name="filter_by_time" class="w-5 h-5 border-2 border-border-color text-accent focus:ring-accent"> Today</label>
+                        </div>
                     </div>
                 </div>
             </aside>
 
             <!-- ======================= MAIN CONTENT ======================= -->
-            <main class="main-content-orders">
-                <section class="order-grid">
-                    <!-- کارت سفارش نمونه ۱ -->
-                    <div class="order-card new">
-                        <div class="card-header-top">
-                            <div class="order-customer-info">
-                                <img src="https://i.pravatar.cc/40?img=3" alt="Customer Avatar" class="customer-avatar">
+            <main class="flex-1">
+                <section class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-main">
+                    <!-- Order Card 1 -->
+                    <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="Avatar" class="w-10 h-10 rounded-full">
                                 <div>
-                                    <p class="customer-name">Alex Trie</p>
-                                    <p class="customer-id">Order #299283</p>
+                                    <p class="font-semibold text-text-primary">Alex Trie</p>
+                                    <p class="text-sm text-text-secondary">Order #299283</p>
                                 </div>
                             </div>
-                            <div class="order-status-badge">New</div>
+                            <div class="bg-status-new-bg text-status-new-text text-xs font-semibold px-3 py-1 rounded-full">New</div>
                         </div>
-                        <div class="order-info-line">
-                            <span>Room number</span>
-                            <span class="price">S-01</span>
-                        </div>
-                        <div class="order-info-line">
-                            <span>Total payment</span>
-                            <span class="price">$27.50</span>
-                        </div>
-                        <ul class="order-items-list">
-                            <li class="order-item"><span class="item-name">Grilled Salmon with Veg...</span> <span class="item-qty">1x</span></li>
-                            <li class="order-item"><span class="item-name">Garden Salad</span> <span class="item-qty">1x</span></li>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Room number</span><span class="font-bold text-text-primary">S-01</span></div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Total payment</span><span class="text-lg font-bold text-text-primary">$27.50</span></div>
+                        <ul class="border-t border-b border-border-color py-4 flex flex-col gap-3 flex-grow">
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Grilled Salmon</span> <span class="text-text-secondary">1x</span></li>
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Garden Salad</span> <span class="text-text-secondary">1x</span></li>
                         </ul>
-                        <p class="order-notes">No dressing on the salad.</p>
-                        <button class="order-details-button">Order details</button>
+                        <p class="text-sm text-text-secondary italic">No dressing on the salad.</p>
+                        <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
                     </div>
-                    <!-- کارت سفارش نمونه ۲ -->
-                    <div class="order-card in-progress">
-                        <div class="card-header-top">
-                            <div class="order-customer-info">
-                                <img src="https://i.pravatar.cc/40?img=4" alt="Customer Avatar" class="customer-avatar">
+
+                    <!-- Order Card 2 -->
+                    <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/40?img=4" alt="Avatar" class="w-10 h-10 rounded-full">
                                 <div>
-                                    <p class="customer-name">Jerome Bell</p>
-                                    <p class="customer-id">Order #299265</p>
+                                    <p class="font-semibold text-text-primary">Jerome Bell</p>
+                                    <p class="text-sm text-text-secondary">Order #299265</p>
                                 </div>
                             </div>
-                            <div class="order-status-badge">On progress</div>
+                            <div class="bg-status-progress-bg text-status-progress-text text-xs font-semibold px-3 py-1 rounded-full">On progress</div>
                         </div>
-                        <div class="order-info-line">
-                            <span>Room number</span>
-                            <span class="price">D-08</span>
-                        </div>
-                        <div class="order-info-line">
-                            <span>Total payment</span>
-                            <span class="price">$31.00</span>
-                        </div>
-                        <ul class="order-items-list">
-                            <li class="order-item"><span class="item-name">Beef Steak</span> <span class="item-qty">1x</span></li>
-                            <li class="order-item"><span class="item-name">Mashed Potatoes</span> <span class="item-qty">1x</span></li>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Room number</span><span class="font-bold text-text-primary">D-08</span></div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Total payment</span><span class="text-lg font-bold text-text-primary">$31.00</span></div>
+                        <ul class="border-t border-b border-border-color py-4 flex flex-col gap-3 flex-grow">
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Beef Steak</span> <span class="text-text-secondary">1x</span></li>
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Mashed Potatoes</span> <span class="text-text-secondary">1x</span></li>
                         </ul>
-                        <p class="order-notes">Steak well-done, no gravy...</p>
-                        <button class="order-details-button">Order details</button>
+                        <p class="text-sm text-text-secondary italic">Steak well-done...</p>
+                        <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
                     </div>
-                    <!-- کارت سفارش نمونه ۳ -->
-                    <div class="order-card ready-to-serve">
-                        <div class="card-header-top">
-                            <div class="order-customer-info">
-                                <img src="https://i.pravatar.cc/40?img=5" alt="Customer Avatar" class="customer-avatar">
+
+                    <!-- Order Card 3 -->
+                    <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/40?img=5" alt="Avatar" class="w-10 h-10 rounded-full">
                                 <div>
-                                    <p class="customer-name">Annette Black</p>
-                                    <p class="customer-id">Order #299222</p>
+                                    <p class="font-semibold text-text-primary">Annette Black</p>
+                                    <p class="text-sm text-text-secondary">Order #299222</p>
                                 </div>
                             </div>
-                            <div class="order-status-badge">Ready to serve</div>
+                            <div class="bg-status-ready-bg text-status-ready-text text-xs font-semibold px-3 py-1 rounded-full">Ready to serve</div>
                         </div>
-                        <div class="order-info-line">
-                            <span>Room number</span>
-                            <span class="price">S-22</span>
-                        </div>
-                        <div class="order-info-line">
-                            <span>Total payment</span>
-                            <span class="price">$36.50</span>
-                        </div>
-                        <ul class="order-items-list">
-                            <li class="order-item"><span class="item-name">Chicken Curry</span> <span class="item-qty">1x</span></li>
-                            <li class="order-item"><span class="item-name">Garden Salad</span> <span class="item-qty">1x</span></li>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Room number</span><span class="font-bold text-text-primary">S-22</span></div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Total payment</span><span class="text-lg font-bold text-text-primary">$36.50</span></div>
+                        <ul class="border-t border-b border-border-color py-4 flex flex-col gap-3 flex-grow">
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Chicken Curry</span> <span class="text-text-secondary">1x</span></li>
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Garden Salad</span> <span class="text-text-secondary">1x</span></li>
                         </ul>
-                        <p class="order-notes">Mild spice level.</p>
-                        <button class="order-details-button">Order details</button>
+                        <p class="text-sm text-text-secondary italic">Mild spice level.</p>
+                        <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
                     </div>
                 </section>
             </main>
