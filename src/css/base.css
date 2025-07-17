@@ -1,0 +1,110 @@
+/* src/css/base.css */
+
+/* CSS Reset پایه */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* تعریف متغیرهای جدید بر اساس نمونه مرجع */
+:root {
+    /* پالت رنگی جدید */
+    --color-bg-page: #F4F7FE;
+    --color-bg-header-sidebar: #1A1D2E;
+    --color-bg-card: #FFFFFF;
+    --color-text-primary: #1A1D2E;
+    --color-text-secondary: #6A7187;
+    --color-text-light: #E0E0E0;
+    --color-border: #E5E9F2;
+    --color-blue-accent: #3F83F8;
+
+    /* رنگ های وضعیت */
+    --color-status-new-bg: #EBF2FE;
+    --color-status-new-text: #3F83F8;
+    --color-status-progress-bg: #FFF8E1;
+    --color-status-progress-text: #F59E0B;
+    --color-status-ready-bg: #E6F7F0;
+    --color-status-ready-text: #10B981;
+    --color-status-cancelled-bg: #FEE2E2;
+    --color-status-cancelled-text: #EF4444;
+
+    /* اندازه ها و سایه ها */
+    --header-height: 72px;
+    --sidebar-width: 256px;
+    --spacing-main: 24px;
+    --border-radius-main: 12px;
+    --border-radius-card: 8px;
+    --shadow-main: 0 4px 15px rgba(42, 48, 66, 0.05);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* === تغییر کلیدی ۱: فاصله از لبه ها به کانتینر اصلی داده می شود === */
+    padding: var(--spacing-main);
+    gap: var(--spacing-main);
+}
+
+.content-area-below-header {
+    display: flex;
+    flex: 1;
+    /* === تغییر کلیدی ۲: پدینگ از این بخش حذف و گپ اضافه می شود === */
+    padding: 0;
+    gap: var(--spacing-main);
+}
+
+/* کلاس های کمکی */
+.flex-container { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-1 { flex: 1; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.grid-container { display: grid; }
+.gap-6 { gap: 24px; }
+
+/* ریسپانسیو */
+@media (max-width: 767px) {
+    .app-container {
+        padding: 16px;
+        gap: 16px;
+    }
+    .content-area-below-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .main-header .header-nav-buttons {
+        display: none;
+    }
+    .main-header .hamburger-menu-button {
+        display: block;
+    }
+    .sidebar-filters {
+        width: 100%;
+        position: static;
+        height: auto;
+    }
+}
