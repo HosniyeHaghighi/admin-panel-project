@@ -9,20 +9,20 @@
 </head>
 <body class="bg-page text-text-primary">
 
-    <!-- App Container -->
+    
     <div class="p-main min-h-screen flex flex-col gap-main">
 
         <!-- ======================= HEADER ======================= -->
         <header class="bg-header-sidebar text-text-light rounded-main p-main flex flex-col gap-main sticky top-main z-10">
             <!-- Top Navbar -->
             <div class="flex justify-between items-center h-[72px]">
-                <!-- Logo -->
+                
                 <div class="flex items-center gap-2">
                     <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17h2v-2h-2v2zm0-4h2V7h-2v8z"></path></svg>
                     <span class="font-bold text-xl text-card">Inntegreat</span>
                 </div>
 
-                <!-- Navigation Buttons -->
+                
                 <nav class="hidden md:flex items-center gap-2">
                     <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Dashboard</button>
                     <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Guests</button>
@@ -31,26 +31,49 @@
                     <button class="px-4 py-2 rounded-md bg-accent text-card font-medium">Restaurant</button>
                 </nav>
 
-                <!-- Icons & Profile -->
+                
                 <div class="flex items-center gap-4">
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
-                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                    </button>
-                    <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-accent">
+                    <div id="search-wrapper" class="relative">
+                        
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Search for orders, rooms..." 
+                            class="hidden w-64 h-10 bg-white/20 text-card placeholder-gray-300 rounded-full py-2 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-accent"
+                        >
+                
+                        <!-- Search Results Dropdown -->
+                        <div id="search-results" class="hidden absolute top-full mt-2 w-64 bg-card rounded-md shadow-lg overflow-hidden z-20">
+                            
+                        </div>
+                    </div>
+                    
+                
+                    <div id="icons-wrapper" class="flex items-center gap-4">
+                        <button id="search-icon-button" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                            <svg class="w-5 h-5 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </button>
+
+                        <button id="notification-icon" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                            <svg class="w-5 h-5 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        </button>
+                        
+                        <img id="user-avatar" src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-accent">
+                    </div>
+                
+                    
                     <button class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
-                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg class="w-6 h-6 text-text-light" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
+                
+
             </div>
             
-            <!-- Stats Section -->
             <section>
                 <h1 class="text-3xl font-bold text-card mb-5">Restaurant</h1>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-main">
-                    <!-- Stat Card 1 -->
+                    
                     <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
                         <div>
                             <p class="text-text-light text-sm">New Orders</p>
@@ -58,7 +81,7 @@
                         </div>
                         <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-new-text">🍴</div>
                     </div>
-                    <!-- Stat Card 2 -->
+                    
                     <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
                         <div>
                             <p class="text-text-light text-sm">On Progress</p>
@@ -66,7 +89,7 @@
                         </div>
                         <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-progress-text">⏳</div>
                     </div>
-                    <!-- Stat Card 3 -->
+                    
                     <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
                         <div>
                             <p class="text-text-light text-sm">Ready to Serve</p>
@@ -74,7 +97,7 @@
                         </div>
                         <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-ready-text">🛎️</div>
                     </div>
-                    <!-- Stat Card 4 -->
+                    
                     <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
                         <div>
                             <p class="text-text-light text-sm">Cancelled Orders</p>
@@ -89,7 +112,6 @@
         <!-- ======================= CONTENT AREA ======================= -->
         <div class="flex-1 flex flex-col md:flex-row gap-main">
             
-            <!-- ======================= SIDEBAR ======================= -->
             <aside class="w-full md:w-[256px] flex-shrink-0 bg-card text-text-secondary p-main rounded-main shadow-lg self-start sticky top-36">
                 <h3 class="text-lg font-bold text-text-primary mb-6">Filters</h3>
                 
@@ -115,10 +137,9 @@
                 </div>
             </aside>
 
-            <!-- ======================= MAIN CONTENT ======================= -->
             <main class="flex-1">
                 <section class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-main">
-                    <!-- Order Card 1 -->
+                    
                     <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3">
@@ -140,7 +161,6 @@
                         <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
                     </div>
 
-                    <!-- Order Card 2 -->
                     <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3">
@@ -162,7 +182,6 @@
                         <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
                     </div>
 
-                    <!-- Order Card 3 -->
                     <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
                         <div class="flex justify-between items-start">
                             <div class="flex items-center gap-3">
@@ -187,5 +206,7 @@
             </main>
         </div>
     </div>
+    
+    <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

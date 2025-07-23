@@ -1,119 +1,97 @@
-// src/main.ts
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Admin Panel loaded.");
 
-    // Card View Toggle
-    const cardViewToggle = document.getElementById('cardViewToggle') as HTMLInputElement;
-    const toggleHandle = document.querySelector('#cardViewToggle + .toggle-switch-track .toggle-switch-handle') as HTMLElement; // انتخاب دقیق handle
-    const orderGrid = document.querySelector('.order-grid') as HTMLElement; 
-
-    if (cardViewToggle && toggleHandle && orderGrid) {
-        
-        const updateCardView = () => {
-            if (cardViewToggle.checked) {
-                toggleHandle.style.transform = 'translateX(24px)'; 
-                toggleHandle.style.backgroundColor = 'var(--color-blue-500)'; 
-                orderGrid.classList.add('card-view-active');
-                console.log('Card View is Active');
-            } else {
-                toggleHandle.style.transform = 'translateX(0)'; 
-                toggleHandle.style.backgroundColor = 'var(--color-white)';
-                orderGrid.classList.remove('card-view-active');
-                console.log('Card View is Inactive');
-            }
-        };
-
-        
-        cardViewToggle.addEventListener('change', updateCardView);
-
-        
-        updateCardView();
+    const searchWrapper = document.getElementById('search-wrapper');
+    const iconsWrapper = document.getElementById('icons-wrapper');
+    const searchIconButton = document.getElementById('search-icon-button');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const searchResultsContainer = document.getElementById('search-results');
+    
+    if (!searchWrapper || !iconsWrapper || !searchIconButton || !searchInput || !searchResultsContainer) {
+        console.error("Search component elements not found! Please check your HTML structure.");
+        return;
     }
 
+    let isSearchOpen = false;
 
-    
-    const filterCheckboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"][id^="filter"], input[type="radio"][name="recentOrders"]');
-    filterCheckboxes.forEach(input => {
-        input.addEventListener('change', (event) => {
-            const target = event.target as HTMLInputElement;
-            console.log(`Filter "${target.id}" changed to: ${target.checked || target.value}`);
-           
-           
-        });
-    });
-
-    
-    interface Order {
-        id: string;
-        customerName: string;
-        customerID: string;
-        total: number;
-        items: { name: string; qty: number }[];
-        notes: string;
-        status: 'new' | 'in-progress' | 'ready' | 'cancelled';
-    }
-
-    const orders: Order[] = [
-        { id: "S-01", customerName: "Alex Trie", customerID: "C-001", total: 27.50, items: [{ name: "Grilled Salmon with Vegetables", qty: 1 }, { name: "Garden Salad", qty: 1 }], notes: "No dressing on the salad.", status: "new" },
-        { id: "D-38", customerName: "Jerome Bell", customerID: "C-002", total: 31.00, items: [{ name: "Beef Steak", qty: 1 }, { name: "Mashed Potatoes", qty: 1 }], notes: "Steak well-done, no gravy on potatoes.", status: "in-progress" },
-        { id: "S-22", customerName: "Annette Black", customerID: "C-003", total: 39.50, items: [{ name: "Chicken Curry with Basmati Rice", qty: 1 }, { name: "Garden Salad", qty: 1 }], notes: "Mild spice level.", status: "ready" },
-        // Add more orders as needed
+    const mockData = [
+        "Order #299283 - Alex Trie",
+        "Room S-01",
+        "Order #299265 - Jerome Bell",
+        "Menu Item: Beef Steak",
+        "Room D-08",
+        "Order #299222 - Annette Black",
+        "Menu Item: Chicken Curry",
+        "Menu Item: Garden Salad",
+        "Customer: Kristin Watson",
+        "Order #299170 - Floyd Miles",
+        "Menu Item: Vegan Burger",
+        "Customer: Robert Fox",
+        "Room S-22",
+        "Menu Item: Pizza Margherita"
     ];
 
-    // Function to render orders 
-    function renderOrders(currentOrders: Order[]) {
-        const orderListContainer = document.querySelector('.order-grid') as HTMLElement;
-        if (orderListContainer) {
-            orderListContainer.innerHTML = ''; // Clear existing orders
+    const openSearch = () => {
+        isSearchOpen = true;
+        searchInput.classList.remove('hidden');
+        iconsWrapper.classList.add('hidden');
+        searchInput.focus();
+    };
 
-            currentOrders.forEach(order => {
-                let statusClass = '';
-                let statusText = '';
-                if (order.status === 'new') {
-                    statusClass = 'new';
-                    statusText = 'New';
-                } else if (order.status === 'in-progress') {
-                    statusClass = 'in-progress';
-                    statusText = 'In Progress';
-                } else if (order.status === 'ready') {
-                    statusClass = 'ready-to-serve';
-                    statusText = 'Ready to Serve';
-                } else if (order.status === 'cancelled') {
-                    statusClass = 'cancelled';
-                    statusText = 'Cancelled';
-                }
+    const closeSearch = () => {
+        isSearchOpen = false;
+        searchInput.classList.add('hidden');
+        iconsWrapper.classList.remove('hidden');
+        searchResultsContainer.classList.add('hidden');
+        searchInput.value = '';
+        searchResultsContainer.innerHTML = '';
+    };
 
-                const orderCardHtml = `
-                    <div class="order-card ${statusClass}">
-                        <div class="card-header-top flex-container justify-between">
-                            <div class="order-customer-info flex-container items-center">
-                                <img src="https://via.placeholder.com/50" alt="Customer Avatar" class="customer-avatar">
-                                <div>
-                                    <p class="customer-name">${order.customerName}</p>
-                                    <p class="customer-id">${order.customerID}</p>
-                                </div>
-                            </div>
-                            <span class="order-status-badge">${statusText}</span>
-                        </div>
-                        <div class="order-total-price">$${order.total.toFixed(2)}</div>
-                        <ul class="order-items-list flex-col space-y-2">
-                            ${order.items.map(item => `
-                                <li class="order-item flex-container justify-between items-center">
-                                    <span class="item-name">${item.name}</span>
-                                    <span class="item-qty">${item.qty}x</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                        <p class="order-notes">${order.notes}</p>
-                        <button class="order-details-button">Order Details</button>
-                    </div>
-                `;
-                orderListContainer.insertAdjacentHTML('beforeend', orderCardHtml);
-            });
+    const displayResults = (results: string[]) => {
+        searchResultsContainer.innerHTML = '';
+
+        if (results.length === 0) {
+            searchResultsContainer.classList.add('hidden');
+            return;
         }
-    }
+        
+        const limitedResults = results.slice(0, 6);
 
-    // Initial render of orders
-    renderOrders(orders);
+        limitedResults.forEach(result => {
+            const item = document.createElement('a');
+            item.href = '#'; 
+            item.className = 'block p-3 text-sm text-text-primary hover:bg-page transition-colors';
+            item.textContent = result;
+            searchResultsContainer.appendChild(item);
+        });
+        
+        searchResultsContainer.classList.remove('hidden');
+    };
+
+    searchIconButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        openSearch();
+    });
+
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        if (searchTerm === '') {
+            searchResultsContainer.classList.add('hidden');
+            return;
+        }
+        
+        const filteredResults = mockData.filter(item => 
+            item.toLowerCase().includes(searchTerm)
+        );
+        
+        displayResults(filteredResults);
+    });
+
+    document.addEventListener('click', (event) => {
+        const mainContainer = document.querySelector('.flex.items-center.gap-4');
+        
+        if (isSearchOpen && mainContainer && !mainContainer.contains(event.target as Node)) {
+            closeSearch();
+        }
+    });
 });
