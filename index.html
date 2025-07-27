@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Restaurant (Tailwind)</title>
+     
+  <script type="module" crossorigin src="/admin-panel-project/assets/index-CIg6E-3l.js"></script>
+  <link rel="stylesheet" crossorigin href="/admin-panel-project/assets/index-7KRTwzeR.css">
+</head>
+<body class="bg-page text-text-primary">
+
+    
+    <div class="p-main min-h-screen flex flex-col gap-main">
+
+        <!-- ======================= HEADER ======================= -->
+        <header class="bg-header-sidebar text-text-light rounded-main p-main flex flex-col gap-main sticky top-main z-10">
+            <!-- Top Navbar -->
+            <div class="flex justify-between items-center h-[72px]">
+                
+                <div class="flex items-center gap-2">
+                    <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17h2v-2h-2v2zm0-4h2V7h-2v8z"></path></svg>
+                    <span class="font-bold text-xl text-card">Inntegreat</span>
+                </div>
+
+                
+                <nav class="hidden md:flex items-center gap-2">
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Dashboard</button>
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Guests</button>
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Reservations</button>
+                    <button class="px-4 py-2 rounded-md text-text-secondary font-medium hover:bg-white/10 hover:text-card transition">Rooms</button>
+                    <button class="px-4 py-2 rounded-md bg-accent text-card font-medium">Restaurant</button>
+                </nav>
+
+                
+                <div class="flex items-center gap-4">
+                    <div id="search-wrapper" class="relative">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Search for orders, rooms..." 
+                            class="hidden w-64 h-10 bg-white/20 text-card placeholder-gray-300 rounded-full py-2 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-accent"
+                        >
+                        <div id="search-results" class="hidden absolute top-full mt-2 w-64 bg-card rounded-md shadow-lg overflow-hidden z-20">
+                        </div>
+                    </div>
+                    
+                    <div id="icons-wrapper" class="flex items-center gap-4">
+                        <button id="search-icon-button" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                            <svg class="w-5 h-5 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </button>
+                        <button id="notification-icon" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                            <svg class="w-5 h-5 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                        </button>
+                        <img id="user-avatar" src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-accent">
+                    </div>
+                    
+                    <button class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                        <svg class="w-6 h-6 text-text-light" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+                
+            </div>
+            
+            <section>
+                <h1 class="text-3xl font-bold text-card mb-5">Restaurant</h1>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-main">
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div><p class="text-text-light text-sm">New Orders</p><p class="text-card text-3xl font-bold">18</p></div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-new-text">🍴</div>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div><p class="text-text-light text-sm">On Progress</p><p class="text-card text-3xl font-bold">2</p></div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-progress-text">⏳</div>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div><p class="text-text-light text-sm">Ready to Serve</p><p class="text-card text-3xl font-bold">7</p></div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-ready-text">🛎️</div>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-main flex justify-between items-center">
+                        <div><p class="text-text-light text-sm">Cancelled Orders</p><p class="text-card text-3xl font-bold">3</p></div>
+                        <div class="w-11 h-11 flex items-center justify-center rounded-full bg-black/20 text-xl text-status-cancelled-text">❌</div>
+                    </div>
+                </div>
+            </section>
+        </header>
+
+        <!-- ======================= CONTENT AREA ======================= -->
+        <div class="flex-1 flex flex-col md:flex-row gap-main">
+            
+            <aside id="filters-sidebar" class="w-full md:w-[256px] flex-shrink-0 bg-card text-text-secondary p-main rounded-main shadow-lg self-start sticky top-36">
+                <h3 class="text-lg font-bold text-text-primary mb-6">Filters</h3>
+                
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <h4 class="font-bold text-text-primary mb-3">Order Status</h4>
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" id="filter-new" class="order-status-checkbox w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent"> New</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" id="filter-on-progress" class="order-status-checkbox w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent"> On Progress</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" id="filter-ready" class="order-status-checkbox w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent"> Ready to Serve</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="checkbox" id="filter-cancelled" class="order-status-checkbox w-5 h-5 rounded border-2 border-border-color text-accent focus:ring-accent"> Cancelled</label>
+                        </div>
+                        <div id="filter-error-message" class="text-red-500 text-xs mt-2 hidden">
+                            Please select one status.
+                        </div>
+                    </div>
+
+                    <div class="border-t border-border-color pt-6">
+                        <h4 class="font-bold text-text-primary mb-3">Filter by</h4>
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="radio" name="filter_by_time" class="w-5 h-5 border-2 border-border-color text-accent focus:ring-accent" checked> Recent orders</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="radio" name="filter_by_time" class="w-5 h-5 border-2 border-border-color text-accent focus:ring-accent"> Last hour</label>
+                            <label class="flex items-center gap-3 font-medium cursor-pointer"><input type="radio" name="filter_by_time" class="w-5 h-5 border-2 border-border-color text-accent focus:ring-accent"> Today</label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="flex-1">
+                <section class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-main">
+                    
+                    <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="Avatar" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-text-primary">Alex Trie</p>
+                                    <p class="text-sm text-text-secondary">Order #299283</p>
+                                </div>
+                            </div>
+                            <div class="bg-status-new-bg text-status-new-text text-xs font-semibold px-3 py-1 rounded-full">New</div>
+                        </div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Room number</span><span class="font-bold text-text-primary">S-01</span></div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Total payment</span><span class="text-lg font-bold text-text-primary">$27.50</span></div>
+                        <ul class="border-t border-b border-border-color py-4 flex flex-col gap-3 flex-grow">
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Grilled Salmon</span> <span class="text-text-secondary">1x</span></li>
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Garden Salad</span> <span class="text-text-secondary">1x</span></li>
+                        </ul>
+                        <p class="text-sm text-text-secondary italic">No dressing on the salad.</p>
+                        <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
+                    </div>
+
+                    <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/40?img=4" alt="Avatar" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-text-primary">Jerome Bell</p>
+                                    <p class="text-sm text-text-secondary">Order #299265</p>
+                                </div>
+                            </div>
+                            <div class="bg-status-progress-bg text-status-progress-text text-xs font-semibold px-3 py-1 rounded-full">On progress</div>
+                        </div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Room number</span><span class="font-bold text-text-primary">D-08</span></div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Total payment</span><span class="text-lg font-bold text-text-primary">$31.00</span></div>
+                        <ul class="border-t border-b border-border-color py-4 flex flex-col gap-3 flex-grow">
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Beef Steak</span> <span class="text-text-secondary">1x</span></li>
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Mashed Potatoes</span> <span class="text-text-secondary">1x</span></li>
+                        </ul>
+                        <p class="text-sm text-text-secondary italic">Steak well-done...</p>
+                        <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
+                    </div>
+
+                    <div class="bg-card p-5 rounded-main shadow-lg flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/40?img=5" alt="Avatar" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-text-primary">Annette Black</p>
+                                    <p class="text-sm text-text-secondary">Order #299222</p>
+                                </div>
+                            </div>
+                            <div class="bg-status-ready-bg text-status-ready-text text-xs font-semibold px-3 py-1 rounded-full">Ready to serve</div>
+                        </div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Room number</span><span class="font-bold text-text-primary">S-22</span></div>
+                        <div class="flex justify-between items-center"><span class="text-text-secondary font-medium">Total payment</span><span class="text-lg font-bold text-text-primary">$36.50</span></div>
+                        <ul class="border-t border-b border-border-color py-4 flex flex-col gap-3 flex-grow">
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Chicken Curry</span> <span class="text-text-secondary">1x</span></li>
+                            <li class="flex justify-between items-center"><span class="text-text-primary">Garden Salad</span> <span class="text-text-secondary">1x</span></li>
+                        </ul>
+                        <p class="text-sm text-text-secondary italic">Mild spice level.</p>
+                        <button class="w-full bg-header-sidebar text-card font-semibold p-3 rounded-card flex items-center justify-center gap-2 hover:bg-gray-700 transition-colors"><span>Order details</span><span class="text-lg">›</span></button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+</body>
+</html>
